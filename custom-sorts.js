@@ -43,6 +43,23 @@ function reverseBaseSort(arr) {
 
 function frequencySort(arr) {
   // Your code here 
+  let obj = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let el = arr[i];
+    if (!obj[el]) obj[el] = 1;
+    else obj[el]++;
+  }
+
+  let helper = (a,b) => {
+    if (obj[a] !== obj[b]) return obj[a] - obj[b];
+    return b-a
+  }
+
+  arr.sort(helper);
+
+  return arr
+
 }
 
 module.exports = [
@@ -54,39 +71,10 @@ module.exports = [
 ];
 
 
-const users = [
-  {
-    id: 1,
-    firstName: "John",
-    lastName: "Doe",
-    age: 30,
-    occupation: "Software Engineer",
-    friends: [2, 3, 4],
-  },
-  {
-    id: 2,
-    firstName: "Jane",
-    lastName: "Doe",
-    age: 25,
-    occupation: "Data Scientist",
-    friends: [1, 4],
-  },
-  {
-    id: 3,
-    firstName: "Mary",
-    lastName: "Smith",
-    age: 32,
-    occupation: "UX Designer",
-    friends: [2, 4],
-  },
-  {
-    id: 4,
-    firstName: "James",
-    lastName: "Johnson",
-    age: 55,
-    occupation: "CTO",
-    friends: [1, 2, 3],
-  },
-];
+const arr1 = [1, 1, 2, 2, 2, 3];
+const arr2 = [2, 3, 1, 3, 2];
+const arr3 = [-1, 1, -6, 4, 5, -6, 1, 4, 1];
 
-console.log(ageSort(users));
+console.log(frequencySort(arr1))//.to.deep.equal([3, 1, 1, 2, 2, 2]);
+console.log(frequencySort(arr2))//.to.deep.equal([1, 3, 3, 2, 2]);
+console.log(frequencySort(arr3))//.to.deep.equal([5, -1, 4, 4, -6, -6, 1, 1, 1]);
